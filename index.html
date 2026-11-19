@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>webnova.arg — Diseño y desarrollo web</title>
+<meta name="description" content="webnova.arg diseña y programa sitios web desde cero para negocios. Sin plantillas, pensados para el celular y hechos para que te escriban.">
+<meta property="og:title" content="webnova.arg — Diseño y desarrollo web">
+<meta property="og:description" content="Webs hechas desde cero para negocios que quieren brillar con luz propia.">
+<meta property="og:image" content="img/amt.jpg">
+<meta name="theme-color" content="#0c1024">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c1024'/%3E%3Cpath d='M16 3C17 13 19 15 29 16 19 17 17 19 16 29 15 19 13 17 3 16 13 15 15 13 16 3Z' fill='%239b7bff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,100..900;1,50..150,100..900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c1024;
+  --bg-2:#141a35;
+  --line:#262d52;
+  --ink:#f5f4fb;
+  --ink-2:#a4a8c8;
+  --nova:#9b7bff;
+  --glow:#d4c6ff;
+  --display:"Anybody","Arial Narrow",Impact,sans-serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --pad:clamp(16px,4vw,56px);
+  --max:1320px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+main{overflow-x:clip}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--nova);color:var(--bg)}
+:focus-visible{outline:2px solid var(--glow);outline-offset:4px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+:root{--sparkle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C53 33 67 47 100 50 67 53 53 67 50 100 47 67 33 53 0 50 33 47 47 33 50 0Z'/%3E%3C/svg%3E")}
+.star{display:inline-block;width:.8em;height:.8em;background:currentColor;-webkit-mask:var(--sparkle) center/contain no-repeat;mask:var(--sparkle) center/contain no-repeat;vertical-align:-.05em}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(12,16,36,.96);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:8px;font:800 22px/1 var(--display);font-stretch:125%;letter-spacing:-.02em}
+.logo .star{color:var(--nova);width:18px;height:18px}
+.logo small{font:500 12px var(--mono);color:var(--ink-2);letter-spacing:.06em;margin-left:2px}
+.nav ul{display:flex;gap:32px;list-style:none;font-size:15px;color:var(--ink-2)}
+.nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;font:600 15px var(--body);border:1px solid var(--line);transition:transform .2s,background .2s,color .2s,border-color .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-nova{background:var(--nova);border-color:var(--nova);color:#0c1024}
+.btn-nova:hover{background:var(--glow);border-color:var(--glow)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn .arr{display:inline-flex;transition:transform .2s}
+.i{width:1em;height:1em;display:block}
+.shot .go .i{width:22px;height:22px}
+.btn:hover .arr{transform:translate(3px,-3px)}
+.nav .btn{height:40px;padding:0 18px;font-size:14px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 40px;overflow:hidden;isolation:isolate}
+.nova{position:absolute;z-index:-1;width:min(90vw,980px);aspect-ratio:1;right:-18%;top:-10%;pointer-events:none}
+.nova::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(236,228,255,.55) 0%,rgba(190,170,255,.45) 12%,rgba(155,123,255,.3) 26%,rgba(110,90,230,.1) 44%,transparent 66%);animation:pulse 6s ease-in-out infinite}
+.nova::after{content:"";position:absolute;left:50%;top:50%;width:46%;height:46%;translate:-50% -50%;background:linear-gradient(135deg,#fff 0%,var(--glow) 30%,var(--nova) 70%,#5b3fd1 100%);-webkit-mask:var(--sparkle) center/contain no-repeat;mask:var(--sparkle) center/contain no-repeat;opacity:.95}
+@keyframes pulse{50%{opacity:.7}}
+@media (min-width:961px) and (hover:hover){.nova::after{animation:spin 60s linear infinite}}
+@keyframes spin{to{rotate:360deg}}
+.grain{position:absolute;inset:0;z-index:-1;opacity:.08;-webkit-mask-image:linear-gradient(#000 60%,transparent);mask-image:linear-gradient(#000 60%,transparent);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero .wrap{width:100%}
+.hero .mono{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.hero .mono .star{color:var(--nova)}
+h1{font:900 clamp(56px,min(13.2vw,17vh),208px)/.84 var(--display);font-stretch:118%;letter-spacing:-.035em;text-transform:uppercase}
+h1 .line{display:block;overflow:hidden;padding-bottom:.04em}
+h1 .line>span{display:inline-block;transform:translateY(105%);animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .line:nth-child(2)>span{animation-delay:.12s}
+h1 .line:nth-child(3)>span{animation-delay:.24s}
+h1 .out{color:transparent;-webkit-text-stroke:2px var(--ink);font-weight:500;font-stretch:150%}
+h1 .hot{color:var(--nova);font-style:italic}
+@keyframes rise{to{transform:none}}
+.hero-foot{display:grid;grid-template-columns:1.1fr auto;gap:40px;align-items:end;margin-top:44px}
+.hero-foot p{max-width:46ch;font-size:19px;color:var(--ink-2)}
+.hero-foot p b{color:var(--ink);font-weight:600}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:flex;gap:48px;margin-top:48px;padding-top:22px;border-top:1px solid var(--line)}
+.stats div{display:grid;gap:4px}
+.stats strong{font:800 34px/1 var(--display);font-stretch:120%}
+.fade{opacity:0;animation:fade .9s .5s forwards}
+@keyframes fade{to{opacity:1}}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid var(--line);overflow:hidden;background:var(--nova);color:#0c1024;transform:rotate(-1.4deg);margin:40px -20px;position:relative;z-index:2}
+.marquee .track{display:flex;width:max-content;animation:slide 30s linear infinite}
+.marquee span{display:flex;align-items:center;gap:28px;padding:16px 14px;font:800 clamp(20px,2.6vw,34px)/1 var(--display);font-stretch:130%;text-transform:uppercase;white-space:nowrap}
+.marquee .star{width:.7em;height:.7em}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- section heads ---------- */
+section{padding:clamp(80px,12vw,150px) 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,80px)}
+h2{font:900 clamp(44px,8vw,120px)/.96 var(--display);font-stretch:115%;letter-spacing:-.03em;text-transform:uppercase}
+h2 em{font-style:normal;color:var(--nova)}
+.head p{max-width:38ch;color:var(--ink-2)}
+
+/* ---------- trabajos ---------- */
+.work{display:grid;gap:clamp(80px,10vw,140px)}
+.job{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"title title" "info shot";column-gap:clamp(28px,5vw,72px);align-items:start}
+.job:nth-child(even){grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"title title" "shot info"}
+.job .title{grid-area:title}
+.job .info{grid-area:info}
+.job .shot{grid-area:shot}
+.job:nth-child(even) .title{text-align:right}
+.job:nth-child(even) .num{justify-content:flex-end}
+.job .num{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.job .num .star{color:var(--nova)}
+.job h3{font:900 clamp(44px,9vw,150px)/.86 var(--display);font-stretch:122%;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:clamp(24px,3vw,40px);overflow-wrap:anywhere}
+.job h3 .out{color:transparent;-webkit-text-stroke:1.5px var(--ink);font-weight:600}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;padding:20px 0;border-block:1px solid var(--line);margin-bottom:22px}
+.meta dt{font:500 11px/1.9 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.meta dd{font-size:15px}
+.job p.desc{color:var(--ink-2);margin-bottom:28px;max-width:52ch}
+.tag{display:inline-block;margin-left:8px;padding:3px 8px;border:1px solid var(--glow);border-radius:999px;color:var(--glow);font:500 10px/1.3 var(--mono);letter-spacing:.12em;vertical-align:middle}
+.shot{display:block;position:relative;border-radius:14px;background:var(--bg-2);border:1px solid var(--line);overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.shot .bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-bottom:1px solid var(--line)}
+.shot .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.shot .bar span{margin-left:10px;font:400 11px var(--mono);color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shot .pic{aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,#1a2042,#0e1228)}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:left top;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.shot .go{position:absolute;right:16px;bottom:16px;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--nova);color:#0c1024;font-size:22px;transform:scale(.6);opacity:0;transition:.35s cubic-bezier(.2,.8,.2,1)}
+.shot:hover{border-color:#454c7a}
+.shot:hover img{transform:scale(1.04)}
+.shot:hover .go,.shot:focus-visible .go{transform:none;opacity:1}
+
+/* ---------- estudio ---------- */
+.studio{background:var(--ink);color:var(--bg);border-radius:clamp(20px,3vw,36px);margin:0 clamp(8px,1.5vw,20px)}
+.studio .mono{color:#676b8f}
+.studio h2 em{color:var(--nova)}
+.studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,90px);margin-top:clamp(40px,6vw,72px)}
+.studio-grid>p{font-size:clamp(19px,1.7vw,23px);line-height:1.5;color:#33365a}
+.points{display:grid;gap:0;list-style:none}
+.points li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:22px 0;border-top:1px solid #d9d6ea}
+.points li:last-child{border-bottom:1px solid #d9d6ea}
+.points b{display:block;font:800 21px/1.2 var(--display);font-stretch:115%;margin-bottom:4px}
+.points span{color:#55597d}
+.points .n{font:500 12px var(--mono);color:#6a4ee0;padding-top:6px}
+
+/* ---------- servicios ---------- */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.svc{background:var(--bg);padding:clamp(24px,3vw,36px);min-height:250px;display:flex;flex-direction:column;transition:background .3s}
+.svc:hover{background:var(--bg-2)}
+.svc .mono{color:var(--nova);margin-bottom:auto}
+.svc h4{font:800 clamp(24px,2.3vw,32px)/1 var(--display);font-stretch:118%;text-transform:uppercase;letter-spacing:-.01em;margin:40px 0 12px}
+.svc p{color:var(--ink-2);font-size:15.5px}
+.svc small{display:block;margin-top:18px;font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#868bb0}
+.svc.big{background:var(--nova);color:#0c1024}
+.svc.big:hover{background:var(--glow)}
+.svc.big .mono,.svc.big p,.svc.big small{color:#1d1747}
+.svc.wide{grid-column:1/-1;min-height:0;display:grid;grid-template-columns:auto 1fr 1.4fr;gap:clamp(20px,4vw,56px);align-items:center}
+.svc.wide .mono{margin:0}
+.svc.wide h4{margin:0}
+.svc.wide small{margin-top:10px}
+@media (max-width:900px){.svc.wide{grid-template-columns:1fr;gap:12px;align-items:start}.svc.wide h4{margin-top:24px}}
+
+/* ---------- contacto ---------- */
+.contact{position:relative;overflow:hidden;isolation:isolate}
+.contact .nova{right:auto;left:50%;top:auto;bottom:-55%;translate:-50% 0;width:min(120vw,1200px)}
+.contact h2{font-size:clamp(52px,10.5vw,170px);text-align:center}
+.contact h2 .out{color:transparent;-webkit-text-stroke:2px var(--ink);font-weight:500}
+.need{margin:48px auto 0;max-width:760px;text-align:center}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:18px 0 28px}
+.chip{height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:rgba(20,26,53,.7);color:var(--ink);font:500 15px var(--body);cursor:pointer;transition:.2s}
+.chip:hover{border-color:var(--ink-2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.need .btn{height:58px;padding:0 30px;font-size:17px}
+.channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:12px;margin-top:72px}
+.channels a{display:grid;gap:8px;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:#141a35;transition:border-color .2s,transform .2s}
+.channels a:hover{border-color:var(--nova);transform:translateY(-3px)}
+.channels strong{font:600 17px var(--body);overflow-wrap:anywhere}
+footer{border-top:1px solid var(--line);padding:28px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.no-js .rv{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  .nav ul{display:none}
+  .hero-foot{grid-template-columns:1fr}
+  .studio-grid{grid-template-columns:1fr}
+  .job,.job:nth-child(even){grid-template-columns:minmax(0,1fr);grid-template-areas:"title" "shot" "info"}
+  .job .shot{margin-bottom:28px}
+  .job:nth-child(even) .title{text-align:left}
+  .job:nth-child(even) .num{justify-content:flex-start}
+  .services{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  h1{font-size:19vw;font-stretch:100%;letter-spacing:-.03em}
+  .stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between}
+  .stats strong{font-size:22px;font-stretch:100%;white-space:nowrap}
+  h1 .out{font-stretch:112%;-webkit-text-stroke-width:1.5px}
+  h2,.job h3{font-stretch:100%}
+  .nova{width:140vw;right:-60%;top:-8%}
+  .services,.channels{grid-template-columns:1fr}
+  .svc{min-height:0}
+  .cta .btn{flex:1;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  h1 .line>span{transform:none}
+  .fade{opacity:1}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body class="no-js">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-ne" viewBox="0 0 16 16"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-se" viewBox="0 0 16 16"><path d="M4 4l8 8M12 5.5V12H5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="webnova.arg, inicio"><i class="star" aria-hidden="true"></i>webnova<small>.arg</small></a>
+    <ul>
+      <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#estudio">Estudio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="btn btn-nova" href="https://wa.me/5492235367857" target="_blank" rel="noopener">Hablemos <span class="arr"><svg class="i" aria-hidden="true"><use href="#i-ne"/></svg></span></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="nova" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="mono fade"><i class="star" aria-hidden="true"></i>webnova.arg — diseño y desarrollo web</p>
+      <h1 aria-label="Webs con luz propia">
+        <span class="line" aria-hidden="true"><span>Webs</span></span>
+        <span class="line" aria-hidden="true"><span class="out">con luz</span></span>
+        <span class="line" aria-hidden="true"><span class="hot">propia.</span></span>
+      </h1>
+      <div class="hero-foot fade">
+        <p>Diseño y programo sitios <b>desde cero</b> para negocios que quieren que los encuentren, los entiendan y les escriban. Cada web arranca por lo que vende tu negocio, no por una plantilla.</p>
+        <div class="cta">
+          <a class="btn btn-nova" href="#trabajos">Ver trabajos <span class="arr"><svg class="i" aria-hidden="true"><use href="#i-se"/></svg></span></a>
+          <a class="btn btn-ghost" href="#contacto">Quiero mi web</a>
+        </div>
+      </div>
+      <div class="stats fade">
+        <div><span class="mono">Proyectos</span><strong id="count">03</strong></div>
+        <div><span class="mono">Base</span><strong>AR</strong></div>
+        <div><span class="mono">Diseño</span><strong>Mobile 1º</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Diseño web <i class="star"></i> Landing pages <i class="star"></i> Webs para negocios <i class="star"></i> Responsive <i class="star"></i> Pedidos por WhatsApp <i class="star"></i> Sin plantillas <i class="star"></i></span>
+      <span>Diseño web <i class="star"></i> Landing pages <i class="star"></i> Webs para negocios <i class="star"></i> Responsive <i class="star"></i> Pedidos por WhatsApp <i class="star"></i> Sin plantillas <i class="star"></i></span>
+    </div>
+  </div>
+
+  <section id="trabajos">
+    <div class="wrap">
+      <div class="head rv">
+        <div>
+          <p class="mono" style="margin-bottom:18px">Trabajos seleccionados</p>
+          <h2>Trabajos <em>(<span id="count2">03</span>)</em></h2>
+        </div>
+        <p>Cuatro sitios, cada uno con su propio lenguaje visual. Entrá y navegalos: están online.</p>
+      </div>
+      <div class="work" id="trabajos-lista"></div>
+      <noscript>
+        <ul style="list-style:none;display:grid;gap:12px">
+          <li><a href="https://amt-arquitectos.netlify.app" target="_blank" rel="noopener">AMT Arquitectos</a></li>
+          <li><a href="https://pausa-cafe-demo.netlify.app" target="_blank" rel="noopener">Pausa Café</a></li>
+          <li><a href="https://bruma-cafe-demo.netlify.app" target="_blank" rel="noopener">Bruma Café</a></li>
+          <li><a href="https://nomade-tiendaweb.netlify.app" target="_blank" rel="noopener">NÓMADE Tienda</a></li>
+        </ul>
+      </noscript>
+    </div>
+  </section>
+
+  <section class="studio" id="estudio">
+    <div class="wrap">
+      <p class="mono rv" style="margin-bottom:18px">El estudio</p>
+      <h2 class="rv">Cada negocio<br>tiene su <em>propia</em><br>luz.</h2>
+      <div class="studio-grid">
+        <p class="rv">webnova es un estudio de diseño y desarrollo web en Argentina. Un estudio de arquitectura no se cuenta igual que un café al paso, por eso cada proyecto arranca con preguntas: quién entra, qué busca y qué tiene que pasar para que te escriba.</p>
+        <ul class="points rv">
+          <li><span class="n">01</span><div><b>Diseño a medida</b><span>Tipografía, color y composición propios para cada marca.</span></div></li>
+          <li><span class="n">02</span><div><b>Hecho para que te escriban</b><span>WhatsApp, formulario o pedido: el sitio lleva a la acción.</span></div></li>
+          <li><span class="n">03</span><div><b>Rápido en el celular</b><span>Carga liviana y diseño pensado primero para pantallas chicas.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head rv">
+        <div>
+          <p class="mono" style="margin-bottom:18px">Servicios</p>
+          <h2>Lo que hago,<br><em>y dónde verlo.</em></h2>
+        </div>
+      </div>
+      <div class="services rv">
+        <article class="svc big"><span class="mono">01</span><h4>Webs para negocios</h4><p>Sitios para estudios, comercios y servicios que necesitan verse serios y recibir consultas.</p><small>Visto en AMT Arquitectos</small></article>
+        <article class="svc"><span class="mono">02</span><h4>Diseño web</h4><p>Identidad aplicada a la web: composición, tipografía y color pensados para cada marca.</p><small>Visto en los 4 proyectos</small></article>
+        <article class="svc"><span class="mono">03</span><h4>Landing pages</h4><p>Una página, un objetivo: presentar lo que vendés y llevar directo al contacto.</p><small>Visto en Bruma Café</small></article>
+        <article class="svc"><span class="mono">04</span><h4>Pedidos por WhatsApp</h4><p>Carta o catálogo con botón directo para pedir, sin pasos de más.</p><small>Visto en Pausa y Bruma</small></article>
+        <article class="svc"><span class="mono">05</span><h4>Responsive</h4><p>Cada pantalla se diseña para celular, tablet y compu. No es achicar: es recomponer.</p><small>Visto en los 4 proyectos</small></article>
+        <article class="svc"><span class="mono">06</span><h4>Rediseño</h4><p>¿Ya tenés web y no te convence? La rehago para que se vea y funcione como tu negocio hoy.</p><small>Consultame</small></article>
+        <article class="svc wide"><span class="mono">07</span><h4>Tiendas online</h4><div><p>Catálogo con filtros, ficha con talles y stock, carrito que se guarda, cupones y checkout en pasos. Tu tienda propia, con tu marca y sin plantillas.</p><small>Visto en NÓMADE</small></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="nova" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="mono rv" style="text-align:center;margin-bottom:22px">Contacto</p>
+      <h2 class="rv">Hagamos<br><span class="out">tu web</span><br><em>brillar.</em></h2>
+      <div class="need rv">
+        <p class="mono" id="need-label">¿Qué necesitás?</p>
+        <div class="chips" role="group" aria-labelledby="need-label">
+          <button class="chip" type="button" aria-pressed="true" data-need="una web para mi negocio">Web para mi negocio</button>
+          <button class="chip" type="button" aria-pressed="false" data-need="una landing page">Landing page</button>
+          <button class="chip" type="button" aria-pressed="false" data-need="una carta con pedidos por WhatsApp">Carta / pedidos</button>
+          <button class="chip" type="button" aria-pressed="false" data-need="una tienda online">Tienda online</button>
+          <button class="chip" type="button" aria-pressed="false" data-need="rediseñar mi web">Rediseñar mi web</button>
+        </div>
+        <a class="btn btn-nova" id="wa-cta" href="https://wa.me/5492235367857?text=Hola%20webnova!%20Quiero%20una%20web%20para%20mi%20negocio." target="_blank" rel="noopener">Escribime por WhatsApp <span class="arr"><svg class="i" aria-hidden="true"><use href="#i-ne"/></svg></span></a>
+      </div>
+      <div class="channels rv">
+        <a href="https://wa.me/5492235367857" target="_blank" rel="noopener"><span class="mono">WhatsApp</span><strong>223 536-7857</strong></a>
+        <a href="https://instagram.com/webnova.arg" target="_blank" rel="noopener"><span class="mono">Instagram</span><strong>@webnova.arg</strong></a>
+        <a href="mailto:ramiromartino04@gmail.com"><span class="mono">Email</span><strong>ramiromartino04@gmail.com</strong></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">© <span id="year">2026</span> webnova.arg</span>
+    <span class="mono">Hecho a mano, sin plantillas <i class="star" aria-hidden="true"></i></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   PROYECTOS: para sumar uno nuevo, copiá un bloque { ... },
+   pegalo al final de la lista y cambiá los datos.
+   La captura va en la carpeta img/ (ideal 1440x900, .jpg).
+   ============================================================ */
+const PROYECTOS = [
+  {
+    nombre: ["AMT", "Arquitectos"],
+    rubro: "Estudio de arquitectura · patología de la construcción",
+    lugar: "Mar del Plata · Argentina",
+    tecnica: "Diseño y código a medida · Netlify",
+    desc: "Sitio institucional para un estudio consultor que trabaja desde 2009. Portada con obras reales, servicios técnicos explicados en criollo, equipo y un formulario para pedir una inspección. Sobrio y en blanco y negro, para que manden las obras.",
+    url: "https://amt-arquitectos.netlify.app",
+    img: "img/amt.jpg",
+    demo: false
+  },
+  {
+    nombre: ["Pausa", "Café"],
+    rubro: "Cafetería · carta y pedidos",
+    lugar: "La Perla, Mar del Plata · Argentina",
+    tecnica: "Diseño y código a medida · Netlify",
+    desc: "Carta online para una cafetería de barrio: categorías, fotos de cada producto, suscripción y pedido directo por WhatsApp con delivery gratis. Verde, cálido y pensado para pedir desde el celular en segundos.",
+    url: "https://pausa-cafe-demo.netlify.app",
+    img: "img/pausa.jpg",
+    demo: true
+  },
+  {
+    nombre: ["Bruma", "Café"],
+    rubro: "Café de especialidad al paso",
+    lugar: "Playa Grande, Mar del Plata · Argentina",
+    tecnica: "Diseño y código a medida · Netlify",
+    desc: "Landing para un café al paso: tipografía editorial, naranja sobre oscuro y bloques con lo que importa (horario, delivery, suscripción). Un solo objetivo: que el pedido salga por WhatsApp.",
+    url: "https://bruma-cafe-demo.netlify.app",
+    img: "img/bruma.jpg",
+    demo: true
+  },
+  {
+    nombre: ["Nómade", "Tienda"],
+    rubro: "Tienda online de ropa streetwear",
+    lugar: "Palermo, Buenos Aires · Argentina",
+    tecnica: "Diseño y código a medida · Netlify",
+    desc: "Tienda online completa: catálogo con filtros, ficha con talles y stock, carrito que se guarda, cupones, envío gratis por monto y checkout en 3 pasos con pago de prueba. Negro y verde ácido, con onda underground.",
+    url: "https://nomade-tiendaweb.netlify.app",
+    img: "img/nomade.jpg",
+    demo: true
+  }
+];
+
+const pad = n => String(n).padStart(2, "0");
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function renderTrabajos(lista) {
+  const total = pad(lista.length);
+  document.getElementById("trabajos-lista").innerHTML = lista.map((p, i) => {
+    const host = p.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    const nombre = p.nombre.join(" ");
+    return `
+    <article class="job rv">
+      <div class="title">
+        <p class="mono num"><i class="star" aria-hidden="true"></i>${pad(i + 1)} / ${total}${p.demo ? '<span class="tag">Demo</span>' : ""}</p>
+        <h3>${esc(p.nombre[0])} <span class="out">${esc(p.nombre[1] || "")}</span></h3>
+      </div>
+      <div class="info">
+        <dl class="meta">
+          <dt>Rubro</dt><dd>${esc(p.rubro)}</dd>
+          <dt>Lugar</dt><dd>${esc(p.lugar)}</dd>
+          <dt>Técnica</dt><dd>${esc(p.tecnica)}</dd>
+        </dl>
+        <p class="desc">${esc(p.desc)}</p>
+        <a class="btn btn-ghost" href="${esc(p.url)}" target="_blank" rel="noopener" aria-label="Ver proyecto ${esc(nombre)} (abre en pestaña nueva)">Ver proyecto <span class="arr"><svg class="i" aria-hidden="true"><use href="#i-ne"/></svg></span></a>
+      </div>
+      <a class="shot" href="${esc(p.url)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i><span>${esc(host)}</span></div>
+        <div class="pic"><img src="${esc(p.img)}" alt="" loading="lazy" width="1440" height="900" onerror="this.remove()"></div>
+        <span class="go"><svg class="i" aria-hidden="true"><use href="#i-ne"/></svg></span>
+      </a>
+    </article>`;
+  }).join("");
+  document.getElementById("count").textContent = total;
+  document.getElementById("count2").textContent = total;
+}
+
+renderTrabajos(PROYECTOS);
+document.body.classList.remove("no-js");
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* nav con fondo al scrollear */
+const nav = document.getElementById("nav");
+const onScroll = () => nav.classList.toggle("solid", scrollY > 30);
+addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+
+/* aparición al scrollear */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    /* también mostrar lo que ya quedó arriba (ej: al recargar con F5 a mitad de página) */
+    if (e.isIntersecting || e.boundingClientRect.top < 0) { e.target.classList.add("in"); io.unobserve(e.target); }
+  });
+}, { rootMargin: "0px 0px -10% 0px" });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+/* elegir qué necesita y armar el mensaje de WhatsApp */
+const wa = document.getElementById("wa-cta");
+document.querySelectorAll(".chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === chip ? "true" : "false"));
+    wa.href = "https://wa.me/5492235367857?text=" + encodeURIComponent(`Hola webnova! Quiero ${chip.dataset.need}.`);
+  });
+});
+</script>
+</body>
+</html>
